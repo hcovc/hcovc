@@ -1,0 +1,365 @@
+
+/*
+Logo is hsl(213, 100%, 58%)
+.thewidcnt -- used to keep content within the media breakpoints, but has no
+    background or other attributes. Allows lining up content, but backgrounds
+    can still go edge to edge on wide screens.
+
+*/
+
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+    background: hsl(208deg 73% 43%);
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: medium;
+    line-height: 1.25em;
+}
+.hidedebug {
+    display: none;
+}
+
+/* 
+Previous site:
+Most items are reset to 0 margin and padding, incl. UL and such. Add them
+here as needed.
+*/
+li, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+ol, ul {
+    list-style: none;
+}
+
+.thewidcnt {
+    margin: 0 auto; 
+}
+
+
+h1, h2, h3, h4, h5, h6,
+.site-title
+{
+    font-family: Mirza, "Source Sans Pro", Arial, sans-serif;
+    line-height: 1.25em;
+}
+
+dl.dl-as-list {
+    margin-left: 20px;
+}
+
+dl.dl-as-list dt {
+    display: list-item;
+}
+
+dl.dl-as-list dd {
+    padding: .625em 0 .625em 0;
+    margin: 0;
+}
+
+dl.dl-as-list dd::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+dl.dl-as-list.dt-titles dt {
+    font-weight: bold;
+    color: hsl(208, 50%, 25%);
+}
+
+dl.dl-as-list.dt-titles.small-caps dt {
+    font-weight: normal;
+    font-variant: small-caps;
+}
+
+dl.dl-as-list.dt-titles.no-bull dt {
+    margin-left: -15px;
+    list-style-type: none;
+    font-size: 105%;
+}
+
+dl.dl-as-list.lco::after {
+    clear: left;
+}
+
+dl.dl-as-list.lco dd::after {
+    clear: left;
+}
+
+dl.dl-as-list.imaged-defs dd {
+    margin-bottom: 1.5em;
+}
+
+dl.dl-as-list.imaged-defs dd:last-of-type {
+    margin-bottom: 0.5em;
+}
+
+dl.dl-as-list.imaged-defs dd .imgwrap {
+    margin: 0 1em 1em 0;
+    float: left;
+}
+
+dl.imaged-defs .imgwrap {
+    max-width: 25%;
+}
+.imaged-defs .imgwrap img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+header {
+    background: hsl(235, 98%, 19%);
+    background: linear-gradient(to bottom, hsl(235, 98%, 19%) 0%, hsl(213, 50%, 30%) 100%);
+}
+
+h1.title {
+    margin: 0;
+    padding: 1em;
+    color: hsl(235deg 60% 95%);
+    line-height: 105%;
+}
+
+body {
+    text-align: center;
+    color: hsl(0deg 0% 10%);
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: medium;
+    line-height: 1.25em;
+    background: hsl(208deg 38% 62%);
+    background: hsl(34deg 10% 79%);
+}
+
+/* Extends to the footer, so no bottom margin. */
+.the-content {
+    text-align: left;
+    margin: 0;
+    background-color: hsl(40deg 20% 93%);
+    padding: .5em 1em;
+    color: hsl(208deg 10% 10%);
+    max-width: 100%;
+}
+
+.contblock {
+    margin-top: 2em;
+}
+.cblk-title {
+    margin-top: 0;
+    padding: .75em;
+    text-indent: -0.75em;
+    border-radius: .75em;
+    background: linear-gradient(to right, hsl(40deg 20% 93% / 0%) 0%, hsl(34deg 10% 81%) 040%, hsl(213, 30%, 81%) 75%, hsl(40deg 20% 93% / 75%) 95%, hsl(40deg 20% 93% / 0%) 100%);
+}
+
+
+/* https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox */
+.hcovc-3word {
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
+    
+    /* For the temp JS image size display */
+    flex-direction: column-reverse;
+    max-width: 720px;
+    margin: auto;
+}
+
+.hcovc-3word img {
+    max-width:100%; 
+    height: auto;
+    margin: 1em;
+    /* This breaks some srcset images because they weren't all converted properly. */
+    /* aspect-ratio: 2 / 1; */
+    /* Needed to keep the flex box from stretching the image: */
+    align-self: center;
+}
+
+/* Basics, somewhat stolen from the old site */
+
+/*
+#footer-bottom was the site's footer on every page. 
+A lot of this won't be used. It was designed backwards from a mobile-first
+perspective.
+The footer was full-width in all cases, never changed color, and only the
+paddings/margins changed. The grid un-split at max: 719.
+The original footer included a NAV section, this does not, so the old
+ID #footer-bottom is now the full footer element. The styling will come from
+a .footer-bottom class.
+*/
+
+/* Somewhat universal */
+.pad {
+    padding: 20px 20px 10px;
+}
+
+.group:after, .group:before {
+    content: "";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+
+
+/* pad is used within the footer for spacing */
+footer.footer-bottom {
+    background: hsl(208deg 73% 43%);
+    background: linear-gradient(to bottom, hsl(213, 100%, 58%) 0%, hsl(208deg 73% 43%) 100%);
+}
+footer.footer-bottom pad {
+    padding-top: 30px;
+}
+
+footer #back-to-top {
+    background: #eaeaea;
+    color: #777;
+    overflow: hidden;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    display: block;
+    margin: 0 auto -30px;
+    border-radius: 0 0 3px 3px;
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.05)
+}
+
+footer #back-to-top i {
+    font-size: 32px;
+    position: relative;
+    top: -2px
+}
+
+footer #back-to-top:hover {
+    color: #444
+}
+
+
+footer.footer-bottom .social-links {
+    padding-top: 10px;
+    float: none;
+}
+
+footer.footer-bottom .social-links .social-tooltip {
+    font-size: 1.75rem;
+    position: relative;
+    z-index: 98;
+    color: hsl(0deg 0% 100% / 85%);;
+}
+
+footer.footer-bottom .social-links li {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.social-links {
+    /* float: right; */
+    position: relative;
+    padding-top: 2px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.social-links li {
+    display: inline-block;
+    margin-left: 8px;
+    line-height: 1em;
+}
+.social-links li a {
+    display: block!important;
+    position: relative;
+    text-align: center;
+}
+
+
+.grid {
+    position: relative;
+    width: 100%;
+    margin: 0 0 10px;
+}
+
+.grid.one-half {
+}
+.grid.last {
+    clear: right;
+    margin-right: 0!important;
+}
+
+@media screen and (min-width: 720px) {
+    .grid.one-half {
+        width: 48.4%;
+    }
+    .grid {
+        margin-right: 3.2%;
+        float: left;
+        display: inline;
+    }
+
+    footer.footer-bottom .social-links,
+    .social-links {
+        float: right;
+    }
+}
+
+/* Kept these from oldstyles, at least temp. */
+a:hover {
+    color: hsl(0deg 0% 27%);
+    text-decoration: none;
+}
+a, a+span.hu-external::after, .themeform label .required, , .post-hover:hover .post-title a, .post-title a:hover, .sidebar.s1 .post-nav li a:hover i, .content .post-nav li a:hover i, .post-related a:hover, .sidebar.s1 .widget_rss ul li a, #footer .widget_rss ul li a, .sidebar.s1 .widget_calendar a, #footer .widget_calendar a, .sidebar.s1 .alx-tab .tab-item-category a, .sidebar.s1 .alx-posts .post-item-category a, .sidebar.s1 .alx-tab li:hover .tab-item-title a, .sidebar.s1 .alx-tab li:hover .tab-item-comment a, .sidebar.s1 .alx-posts li:hover .post-item-title a, #footer .alx-tab .tab-item-category a, #footer .alx-posts .post-item-category a, #footer .alx-tab li:hover .tab-item-title a, #footer .alx-tab li:hover .tab-item-comment a, #footer .alx-posts li:hover .post-item-title a, .comment-tabs li.active a, .comment-awaiting-moderation, .child-menu a:hover, .child-menu .current_page_item > a, .wp-pagenavi a {
+    color: hsl(202deg 52% 49%);
+}
+a, a:after, a:before {
+    transition: all .2s ease;
+}
+a {
+    color: hsl(175deg 81% 45%);
+    color: hsl(215deg 70% 40%);
+}
+
+@media screen and (min-width: 300px) {
+    /* Fix a title problem on a very narrow screen where text caused overflow. */
+    .softnbsp {
+        white-space: nowrap;
+        overflow-wrap: break-word;
+    }
+}
+@media screen and (min-width: 620px) {
+    .thewidcnt {
+        width: 600px;
+    }
+    
+    .the-content {
+        margin: auto;
+        padding-left: 2em;
+        padding-right: 2em;
+        border-radius: 0.5em;
+        background: linear-gradient(to right, hsl(34deg 10% 81%) 0%, hsl(40deg 20% 93%) 03%, hsl(40deg 20% 93%) 97%, hsl(34deg 10% 81%) 100%);
+    }
+    
+}
+
+@media screen and (min-width: 750px) {
+    h1.title { padding-left: 0; padding-right: 0; }
+    .thewidcnt {
+        width: 80%;
+        max-width: 900px;
+    }
+    .thewidcnt.the-content {
+    }
+
+    dl.imaged-defs .imgwrap {
+        max-width: 150px;
+    }
+}
+
+
+.nope h1 { 
+    color: hsl(208deg 30% 23%); 
+}
