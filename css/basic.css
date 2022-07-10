@@ -118,6 +118,8 @@ dl.imaged-defs .imgwrap {
 header {
     background: hsl(235, 98%, 19%);
     background: linear-gradient(to bottom, hsl(235, 98%, 19%) 0%, hsl(213, 50%, 30%) 100%);
+    box-shadow: 0 3px 3px hsl(213deg 30% 15% / 50%);
+    position: relative;
 }
 
 h1.title {
@@ -175,10 +177,10 @@ body {
     max-width:100%; 
     height: auto;
     margin: 1em;
-    /* This breaks some srcset images because they weren't all converted properly. */
-    /* aspect-ratio: 2 / 1; */
     /* Needed to keep the flex box from stretching the image: */
     align-self: center;
+    border-radius: 1em;
+    box-shadow: 2px 2px 3px hsl(230deg 40% 15% / 50%);
 }
 
 /* Basics, somewhat stolen from the old site */
