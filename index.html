@@ -194,7 +194,9 @@
 
     // Load any needed scripts and launch initializations.
     function run() {
-        oRoot.loadScript('https://code.jquery.com/jquery-3.6.0.js', true)
+        Promise.resolve()
+        //.then(() => oRoot.loadScript(
+            //'https://code.jquery.com/jquery-3.6.0.js', true))
         .then(() => oRoot.loadScript('js/basics.js', true))
         // Scripts are loading, start init.
         .then(() => console.info('Done with loading chain.'))

@@ -12,6 +12,10 @@ html, body {
     margin: 0;
     background: hsl(208deg 73% 43%);
 }
+body {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
 *, *:before, *:after {
     box-sizing: inherit;
 }
