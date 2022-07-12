@@ -99,6 +99,9 @@
 <p>Affiliates and related resources are on the <a href="resources.html"
     >resources page</a>.</p>
 
+<p class="show-if-js">Use this button to see a contact email.</p>
+<div id="modalLaunch"></div>
+
 </div><!-- /.block-links -->
 
 
@@ -187,10 +190,15 @@
 
     // The debug space is made in the loaded file before this is called.
     function loader() {
-        // The image displays for testing srcset.
-        //oRoot.debug.imageStatus();
-        oRoot.handlerIniters.scrollToTop();
+        oRoot.whenDocReady(() => {
+            // The image displays for testing srcset.
+            //oRoot.debug.imageStatus();
+            // This page uses the modal area.
+            oRoot.handlerIniters.setupModalArea();
+            oRoot.handlerIniters.scrollToTop();
+        });
     }
+
 
     // Load any needed scripts and launch initializations.
     function run() {

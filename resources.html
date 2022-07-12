@@ -177,14 +177,18 @@ TODO:
 
     // The debug space is made in the loaded file before this is called.
     function loader() {
-        // The image displays for testing srcset.
-        //oRoot.debug.imageStatus();
-        oRoot.handlerIniters.scrollToTop();
+        oRoot.whenDocReady(() => {
+            // The image displays for testing srcset.
+            //oRoot.debug.imageStatus();
+            oRoot.handlerIniters.scrollToTop();
+        });
     }
 
     // Load any needed scripts and launch initializations.
     function run() {
-        oRoot.loadScript('https://code.jquery.com/jquery-3.6.0.js', true)
+        Promise.resolve()
+        //.then(() => oRoot.loadScript(
+            //'https://code.jquery.com/jquery-3.6.0.js', true))
         .then(() => oRoot.loadScript('js/basics.js', true))
         // Scripts are loading, start init.
         .then(() => console.info('Done with loading chain.'))
