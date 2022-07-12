@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" class="no-js">
+<head>
+<meta charset="utf-8" />
+
+<title>Email encryption tool</title>
+<meta name="date" content="2022-06-12T11:07:35-08:00" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* Define local space. */
+(function(win, doc){
+    'use strict';
+    win.com = win.com || {};
+    com.hcovc = com.hcovc || {};
+    com.hcovc.util = com.hcovc.util || {};
+    let oDocCls = doc.documentElement.classList;
+
+    oDocCls.remove('no-js');
+    oDocCls.add('js');
+
+    win.hcovcSpace = () => com.hcovc;
+})(window, document);
+</script>
+<link rel="stylesheet" href="../css/basic.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicons/favicon-16x16.png">
+<script src="../js/scriptloader.js"></script>
+<style>
+.encrform {
+    padding: 1em;
+    background: hsl(0deg 0% 99% / 50%);
+    border: 1px solid hsl(34deg 27% 30% / 70%);
+    box-shadow: 0 0 10px inset hsl(0deg 0% 0% / 49%);
+    margin: 2em auto;
+    border-radius: 0.5em;
+}
+.encrform-inp {
+    border: 1px solid hsl(33deg 15% 65%);
+    border-radius: 3px;
+}
+.encrform-out {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.25em;
+    line-height: 1.5em;
+    padding: 0.5em;
+    min-height: 1em;
+    display: table;
+    background: hsl(0deg 0% 96%);
+    border: 1px solid hsl(33deg 15% 65%);
+    border-radius: 3px;
+}
+ul {
+    padding: 0.5em 1.5em;
+    list-style: disc;
+}
+
+footer .container { padding: 1em 0.5em; }
+</style>
+</head>
+
+<body>
+<header>
+<div class="thewidcnt">
+    <h1 class="title"><span class="softnbsp">Humanist Community</span> email
+        builder</h1>
+</div><!-- /.thewidcnt -->
+</header>
+
+<div class="the-content thewidcnt">
+
+<p>Use this to create new email data for the contact information shown by the
+    site. This tool does not do anything other than create text from the typed
+    input.</p>
+
+<p>This encryption page should not be on the website but there isn't another
+    place to put it. Since it needs to be available, it is on this unlinked
+    page.</p>
+
+<p>It is all manual operations:</p>
+<ul>
+    <li>Type in an email</li>
+    <li>Copy the results</li>
+    <li>Paste the results into the JS code, currently the file "basics.js".</li>
+    <li>Fix the pasted code to make the first parameter a string.</li>
+</ul>
+
+<p>The place in the code to paste it will be an array. It looks something
+    like:</p>
+
+<pre>const contactSpec = ['aXdNvenw3...Gibberish34', 11, 28, 1];</pre>
+
+<p>The code made with this tool, shown in the first line below, should be
+    reformatted to look like the second line after it is put between the
+    brackets.</p>
+<pre>
+YnVnb2t5Jw==,11,12,1
+'YnVnb2t5Jw==', 11, 12, 1
+</pre>
+<p>Resulting in:</p>
+<pre>const contactSpec = ['YnVnb2t5Jw==', 11, 12, 1];</pre>
+
+
+<p>This is easily broken encryption and the tool expects basic ASCII characters
+    to be used in the email address. It is just a deterrent to web scrapers.</p>
+
+<div class="encrform">
+<label>Enter email: <input id="encr-in" class="encrform-inp" placeholder=
+    "me@example.com"></label>
+
+<p>Copy this and put this text constant (currently "contactSpec") in the
+    sites's JavaScript code. It is an array that defines the email:</p>
+<div id="encr-out" class="encrform-out">Future encrypted results</div>
+</div>
+
+
+<p>There may be a warning in the JavaScript Inspector about not finding the
+    modal button. This page doesn't have one.</p>
+</div>
+<!-- /.the-content -->
+
+<footer class="footer-bottom">
+<div class="thewidcnt">
+    <section class="container" id="footer-bottom-target">
+                    <div id="copyright">
+<p>Humanist Community of Ventura County © 2022. All Rights Reserved.</p>
+                    </div><!--/#copyright-->
+    </section>
+
+</div><!-- /.thewidcnt -->
+</footer>
+
+<script>
+
+(function(oRoot, win, doc){
+    'use strict';
+
+    // The outer function allows delaying using the getUtilObj function.
+    function initEncr() {
+        // IDs for the elements needed on this page.
+        const idElemEncInput = 'encr-in';
+        const idElemEncOutput = 'encr-out';
+
+        // Where the encryption code lives.
+        let oUtil = oRoot.getUtilObj();
+
+        function emailEncoderSetup() {
+            const elemIn = doc.getElementById(idElemEncInput);
+            const elemOut = doc.getElementById(idElemEncOutput);
+            if (elemIn === null) {
+                throw new Error(`Could not find encoder input ID "${idElemEncInput}".`);
+            }
+            if (elemOut === null) {
+                throw new Error(`Could not find encoder output ID "${idElemEncOutput}".`);
+            }
+
+            elemIn.addEventListener('keyup', function(event) {
+                const txt = event.target.value;
+                //console.log(txt);
+                event.preventDefault();
+                elemOut.textContent = oUtil.encMail(txt);
+
+            });
+
+        }
+
+        // Do the init.
+        emailEncoderSetup();
+    }
+
+
+
+    // The debug space is made in the loaded file before this is called.
+    function loader() {
+        // Initialize this code when docReady happens
+        oRoot.whenDocReady(initEncr);
+
+    }
+
+    // Load any needed scripts and launch initializations.
+    function run() {
+        Promise.resolve()
+        .then(() => oRoot.loadScript('../js/basics.js', true))
+        // Scripts are loading, start init.
+        .then(() => console.info('Done with loading chain.'))
+        .then(loader)
+        .then(() => console.info('Done with loader inits.'))
+        ;
+    }
+
+    //oRoot.loader = loader;
+    oRoot.run = run;
+
+})(hcovcSpace(), window, document);
+
+// Run the loaders.
+hcovcSpace().run();
+
+</script>
+</body>
+</html>
+
